@@ -21,7 +21,8 @@ export default function Home() {
     const interval = setInterval(() => {
       if (canvasRef.current) {
         drawPathStack(h, 2 * row, canvasRef.current);
-        setH(evolve(h));
+        const { h: hOut } = evolve(h);
+        setH(hOut);
         setRow(row + 1);
       }
     }, 40);
