@@ -1,37 +1,41 @@
 import { Footer } from "@/components/Footer";
-import { drawPathTranslate } from "@/utils/canvas/draw-path-translate";
+import { drawPathQuill } from "@/utils/canvas/draw-path-quill";
 import { evolve, initialize } from "@/utils/models/ripples/lib";
 import { Inter } from "next/font/google";
 import Head from "next/head";
 import React, { useEffect, useRef, useState } from "react";
 
-// I am building a website
-// That animates ripples
-// In the sand
-// Blown by the wind
-
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Translate() {
+export default function Quill() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const canvasRef2 = useRef<HTMLCanvasElement>(null);
 
   // Generate the initial bed state, with a "roughness" height
   const initialState = initialize(0.2);
+  const initialState2 = [...initialState];
+  initialState2[0] += 0.1;
   const [elevation, setElevation] = useState(initialState);
+  const [slope, setSlope] = useState(initialState);
+  const [elevation2, setElevation2] = useState(initialState2);
+  const [slope2, setSlope2] = useState(initialState2);
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (canvasRef.current) {
-        drawPathTranslate(elevation, canvasRef.current, canvasRef2.current);
-        const { h } = evolve(elevation);
+        drawPathQuill(elevation, slope, 150, canvasRef.current, false);
+        drawPathQuill(elevation2, slope2, 250, canvasRef.current, true);
+        const { h, slope: theta } = evolve(elevation);
+        const { h: h2, slope: theta2 } = evolve(elevation2);
         setElevation(h);
+        setSlope(theta);
+        setElevation2(h2);
+        setSlope2(theta2);
       }
     }, 40);
     return () => {
       clearInterval(interval);
     };
-  }, [elevation]);
+  }, [elevation, slope, elevation2, slope2]);
 
   return (
     <div className="flex flex-col justify-between min-h-screen">
@@ -47,12 +51,6 @@ export default function Translate() {
               width={550}
               height={360}
               ref={canvasRef}
-            ></canvas>
-            <canvas
-              width={550}
-              height={360}
-              ref={canvasRef2}
-              style={{ display: "none" }}
             ></canvas>
           </div>
           <section className="flex flex-col gap-4 text-sm">

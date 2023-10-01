@@ -9,11 +9,13 @@ export function initialize(roughness: number) {
 }
 
 function saltate(h: number[]) {
+  const slopes = [];
   for (let j = 0; j < NX; j++) {
     // Let's introduce a slope condition where the grain only moves if it's on the "upwind" side of the slope
     const jprevious = j === 0 ? NX - 1 : j - 1;
     const jnext = j === NX - 1 ? 0 : j + 1;
-    if (h[jnext] > h[jprevious]) {
+    const slope = h[jnext] - h[jprevious];
+    if (slope > 0) {
       let jump = Math.floor(L0 + B * h[j]);
       jump = jump < 0 ? 0 : jump;
       h[j] = h[j] - Q;
@@ -24,9 +26,10 @@ function saltate(h: number[]) {
         h[wrap] = h[wrap] + Q;
       }
     }
+    slopes.push(slope);
   }
 
-  return h;
+  return { h, slopes };
 }
 
 function diffuse(h: number[]) {
@@ -54,6 +57,6 @@ function diffuse(h: number[]) {
 }
 
 export function evolve(h: number[]) {
-  const saltated = saltate(h);
-  return diffuse(saltated);
+  const { h: saltated, slopes } = saltate(h);
+  return { h: diffuse(saltated), slope: slopes };
 }
