@@ -1,34 +1,34 @@
-import { drawPathTranslate } from "@/utils/canvas/draw-path-translate";
-import { evolve, initialize } from "@/utils/models/ripples/lib";
+import { drawPathStack } from "@/utils/canvas/draw-path-stack";
+import { NX } from "@/utils/models/ripples/constants";
+import { evolve } from "@/utils/models/ripples/lib";
 import { Inter } from "next/font/google";
 import React, { useEffect, useRef, useState } from "react";
 
-// I am building a website
-// That animates ripples
-// In the sand
-// Blown by the wind
-
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Translate() {
+export default function Home() {
+  const [row, setRow] = useState(0);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const canvasRef2 = useRef<HTMLCanvasElement>(null);
 
-  // Generate the initial bed state, with a "roughness" height
-  const initialState = initialize(0.2);
-  const [elevation, setElevation] = useState(initialState);
+  const initialState = [];
+  for (let i = 0; i < NX; i++) {
+    initialState.push(0.2 * Math.random());
+  }
+
+  const [h, setH] = useState(initialState);
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (canvasRef.current) {
-        drawPathTranslate(elevation, canvasRef.current, canvasRef2.current);
-        setElevation(evolve(elevation));
+        drawPathStack(h, 2 * row, canvasRef.current);
+        setH(evolve(h));
+        setRow(row + 1);
       }
     }, 40);
     return () => {
       clearInterval(interval);
     };
-  }, [elevation]);
+  }, [h, row]);
 
   return (
     <main
@@ -42,14 +42,8 @@ export default function Translate() {
             height={360}
             ref={canvasRef}
           ></canvas>
-          <canvas
-            width={550}
-            height={360}
-            ref={canvasRef2}
-            style={{ display: "none" }}
-          ></canvas>
         </div>
-        <section className="flex flex-col gap-4 text-sm">
+        <section className="flex flex-col gap-4 text-sm mt-8">
           <h1 className="flex items-start font-bold text-xl">
             Ripples in wind-blown sand
           </h1>
