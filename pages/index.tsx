@@ -1,43 +1,25 @@
 import { Footer } from "@/components/Footer";
-import { drawPathTranslate } from "@/utils/canvas/draw-path-translate";
-import { evolve, initialize } from "@/utils/models/ripples/lib";
+import { ripplesScroll } from "@/utils/canvas/ripples-scroll";
 import { Inter } from "next/font/google";
 import Head from "next/head";
-import React, { useEffect, useRef, useState } from "react";
-
-// I am building a website
-// That animates ripples
-// In the sand
-// Blown by the wind
+import { useEffect, useRef } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Translate() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const canvasRef2 = useRef<HTMLCanvasElement>(null);
-
-  // Generate the initial bed state, with a "roughness" height
-  const initialState = initialize(0.2);
-  const [elevation, setElevation] = useState(initialState);
+  const screenCanvasRef = useRef<HTMLCanvasElement>(null);
+  const bufferCanvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (canvasRef.current) {
-        drawPathTranslate(elevation, canvasRef.current, canvasRef2.current);
-        const { h } = evolve(elevation);
-        setElevation(h);
-      }
-    }, 40);
-    return () => {
-      clearInterval(interval);
-    };
-  }, [elevation]);
+    screenCanvasRef?.current &&
+      ripplesScroll(screenCanvasRef.current, bufferCanvasRef.current);
+  }, []);
 
   return (
     <div className="flex flex-col justify-between min-h-screen">
       <Head>
-        <title>Instability IO</title>
-        <meta property="og:title" content={"Instability IO"} key="title" />
+        <title>Instability I/O</title>
+        <meta property="og:title" content={"Instability I/O"} key="title" />
       </Head>
       <main className={`flex flex-col items-center p-8 ${inter.className}`}>
         <div className={`flex flex-col max-w-xl p-4`}>
@@ -46,12 +28,12 @@ export default function Translate() {
               className={`flex max-w-full`}
               width={550}
               height={360}
-              ref={canvasRef}
+              ref={screenCanvasRef}
             ></canvas>
             <canvas
               width={550}
               height={360}
-              ref={canvasRef2}
+              ref={bufferCanvasRef}
               style={{ display: "none" }}
             ></canvas>
           </div>
