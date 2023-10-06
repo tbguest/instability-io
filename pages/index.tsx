@@ -1,5 +1,5 @@
 import { Footer } from "@/components/Footer";
-import { ripplesScroll } from "@/utils/canvas/ripples-scroll";
+import { scrollProfile } from "@/utils/canvas/scroll-profile";
 import { Inter } from "next/font/google";
 import Head from "next/head";
 import { useEffect, useRef } from "react";
@@ -12,7 +12,7 @@ export default function Translate() {
 
   useEffect(() => {
     screenCanvasRef?.current &&
-      ripplesScroll(screenCanvasRef.current, bufferCanvasRef.current);
+      scrollProfile(screenCanvasRef.current, bufferCanvasRef.current);
   }, []);
 
   return (

@@ -1,6 +1,6 @@
 import { evolve, initialize } from "../models/ripples/lib";
 
-export function ripplesScroll(
+export function scrollProfile(
   screenCanvas: HTMLCanvasElement,
   bufferCanvas: HTMLCanvasElement | null
 ) {
@@ -51,7 +51,7 @@ export function ripplesScroll(
         bufferContext.clearRect(0, 0, width, height);
         bufferContext.drawImage(screenCanvas, 0, -2);
 
-        const { h: h1 } = evolve(h, Number("7")); // Pass this in
+        const { h: h1 } = evolve(h, 7); // Pass this in
         h = h1;
       }
     }
