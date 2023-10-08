@@ -2,7 +2,7 @@ import { evolve, initialize } from "../models/ripples/lib";
 
 // TODO: Pass init and evolution functions to generic plotter
 export function quiver(screenCanvas: HTMLCanvasElement) {
-  const screenContext = screenCanvas?.getContext("2d");
+  const ctx = screenCanvas?.getContext("2d");
 
   let h = initialize(0.2);
   let h2 = [...h];
@@ -25,7 +25,7 @@ export function quiver(screenCanvas: HTMLCanvasElement) {
   let delta;
 
   function draw() {
-    if (screenContext) {
+    if (ctx) {
       requestAnimationFrame(draw);
 
       now = Date.now();
@@ -34,7 +34,7 @@ export function quiver(screenCanvas: HTMLCanvasElement) {
       if (delta > interval) {
         then = now - (delta % interval);
 
-        screenContext.clearRect(0, 0, width, height);
+        ctx.clearRect(0, 0, width, height);
 
         const path = new Path2D();
         // First axes
@@ -47,8 +47,8 @@ export function quiver(screenCanvas: HTMLCanvasElement) {
           path.moveTo(xScale * i, offset2);
           path.lineTo(xScale * i + 8 * slope[i], offset2 + yScale * h[i]);
         }
-        screenContext.lineWidth = 1;
-        screenContext.stroke(path);
+        ctx.lineWidth = 1;
+        ctx.stroke(path);
 
         const { h: h1, slope: slope2 } = evolve(h, 7); // Pass this in
         h = h1;

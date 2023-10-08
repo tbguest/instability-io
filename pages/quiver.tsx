@@ -1,12 +1,12 @@
 import { Footer } from "@/components/Footer";
-import { quiver } from "@/utils/canvas/quill";
+import { quiver } from "@/utils/canvas/quiver";
 import { Inter } from "next/font/google";
 import Head from "next/head";
 import { useEffect, useRef } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Quill() {
+export default function Quiver() {
   const screenCanvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
