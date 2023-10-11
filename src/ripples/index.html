@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="Instability I/O" key="title" />
+    <title>Instability I/O</title>
+    <link rel="stylesheet" type="text/css" href="../styles/pages.css" />
+    <script type="module" src="../utils/canvas/scroll-profile.ts"></script>
+  </head>
+  <body>
+    <div class="canvas-container">
+      <canvas
+        class="canvas"
+        width="600"
+        height="480"
+        id="screenCanvas"
+      ></canvas>
+      <canvas
+        width="600"
+        height="480"
+        id="bufferCanvas"
+        style="display: none"
+      ></canvas>
+    </div>
+    <div class="container">
+      <main class="main">
+        <section class="section">
+          <p>
+            A simulated sand bed might take on a 'rippled' state if the
+            conditions are right. The bed evolves through 'saltation' - the
+            downwind movement of individual grains - coupled with localized
+            'diffusion' that keeps the bed relatively smooth.
+          </p>
+          <p>
+            Grains at higher elevations are transported farther, and grains on
+            leeward slopes aren't transported at all.
+          </p>
+        </section>
+      </main>
+      <footer class="footer">
+        <a href="https://github.com/tbguest">@tbguest</a>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,109 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-family: monospace, monospace;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+#root,
+#__next {
+  isolation: isolate;
+}
+
+a {
+  color: black;
+}
+
+body {
+  display: grid;
+  grid-template: auto / 1fr 1fr;
+  gap: 24px;
+  min-width: 100vw;
+  min-height: 100vh;
+  justify-items: center;
+  padding: 24px;
+}
+
+.canvas-container {
+  display: grid;
+  align-items: center;
+}
+
+.container {
+  padding: 32px;
+  display: grid;
+  grid-template: 1fr auto / auto;
+  flex-direction: column;
+  justify-content: space-between;
+  /* max-width: 600px; */
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 128px;
+}
+
+.canvas {
+  display: flex;
+  max-width: 100%;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.nav-text {
+  font-weight: bold;
+  font-size: large;
+}
+
+.footer {
+  display: flex;
+  padding-top: 12px;
+  width: 100%;
+  border-top: 1px solid;
+  justify-self: end;
+}
+
+.footer a {
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    padding: 12px;
+  }
+}
