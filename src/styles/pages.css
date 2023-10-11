@@ -45,12 +45,12 @@ a {
 
 body {
   display: grid;
-  grid-template: auto / 1fr 1fr;
+  grid-template: auto / 55% auto;
   gap: 24px;
   min-width: 100vw;
   min-height: 100vh;
   justify-items: center;
-  padding: 24px;
+  padding: 56px;
 }
 
 .canvas-container {
@@ -64,7 +64,6 @@ body {
   grid-template: 1fr auto / auto;
   flex-direction: column;
   justify-content: space-between;
-  /* max-width: 600px; */
 }
 
 .main {
@@ -76,10 +75,23 @@ body {
 
 .canvas {
   display: flex;
+  flex-direction: column;
   max-width: 100%;
 }
 
 .section {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.nav {
   display: flex;
   flex-direction: column;
   gap: 16px;
