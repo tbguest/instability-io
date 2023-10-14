@@ -10,3 +10,4 @@ Why I'm using a bundler:
 - imports/exports without declaring modules
 - I don't plan to lean on npm imports very heavily for this project (or perhaps even at all), but you never know...
 - Support for CSS modules, or some form of scoped CSS
+- I wanted a testing framework
