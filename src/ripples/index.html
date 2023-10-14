@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="Instability I/O" key="title" />
+    <title>Instability I/O</title>
+    <link rel="stylesheet" type="text/css" href="../styles/pages.css" />
+    <link rel="icon" type="image/png" href="/favicon.ico" />
+    <script type="module" src="../utils/canvas/scroll-profile.ts"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="canvas-container">
+        <canvas
+          class="canvas"
+          width="600"
+          height="480"
+          id="screenCanvas"
+        ></canvas>
+        <canvas
+          width="600"
+          height="480"
+          id="bufferCanvas"
+          style="display: none"
+        ></canvas>
+      </div>
+      <div class="content-container">
+        <main class="main">
+          <section class="section">
+            <div class="content">
+              <div>
+                <h1>Ripples in wind-blown sand</h1>
+                <em style="font-size: small"
+                  >Inspired by Nishimori and Ouchi (1993)</em
+                >
+              </div>
+              <p>
+                A reaction-diffusion-type system representing sand transport
+                dynamics on a 1-d coupled map-lattice.
+              </p>
+              <p>
+                The rippled pattern emerges spontaneously though instability
+                brought on my surpassing a threshold "wind" stress.
+              </p>
+            </div>
+            <nav class="nav">
+              <a href="/" class="nav-link">
+                <p class="nav-text">Index</p>
+              </a>
+              <a href="/lorenz/" class="nav-link">
+                <p class="nav-text">Initial conditions</p>
+              </a>
+              <!-- <a href="/dunes" class="nav-link">
+                <p class="nav-text">1-d dunes automaton</p>
+              </a> -->
+            </nav>
+          </section>
+        </main>
+        <footer class="footer">
+          <a href="https://github.com/tbguest">@tbguest</a>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>

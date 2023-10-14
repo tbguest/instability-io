@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="Instability I/O" key="title" />
+    <title>Instability I/O</title>
+    <link rel="stylesheet" type="text/css" href="../styles/pages.css" />
+    <link rel="icon" type="image/png" href="/favicon.ico" />
+    <script type="module" src="../utils/canvas/lorenz.ts"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="canvas-container">
+        <canvas
+          class="canvas"
+          width="600"
+          height="600"
+          id="screenCanvas"
+        ></canvas>
+        <canvas
+          width="600"
+          height="600"
+          id="bufferCanvas"
+          style="display: none"
+        ></canvas>
+      </div>
+      <div class="content-container">
+        <main class="main">
+          <section class="section">
+            <div class="content">
+              <div>
+                <h1>Initial conditions</h1>
+                <em style="font-size: small">Inspired by Lorenz (1963)</em>
+              </div>
+              <p>Cut the meteorologists some slack.</p>
+            </div>
+            <nav class="nav">
+              <a href="/" class="nav-link">
+                <p class="nav-text">Index</p>
+              </a>
+              <a href="/ripples/" class="nav-link">
+                <p class="nav-text">Ripples in wind-blown sand</p>
+              </a>
+              <!-- <a href="/dunes" class="nav-link">
+                <p class="nav-text">1-d dunes automaton</p>
+              </a> -->
+            </nav>
+          </section>
+        </main>
+        <footer class="footer">
+          <a href="https://github.com/tbguest">@tbguest</a>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>

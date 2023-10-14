@@ -1,27 +1,19 @@
 {
-  "name": "nonlinear-next",
+  "name": "instability-io",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "dev": "vite",
+    "ts": "tsc --noEmit",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest"
   },
   "devDependencies": {
-    "@types/node": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "autoprefixer": "latest",
-    "eslint": "latest",
-    "eslint-config-next": "latest",
-    "postcss": "latest",
-    "tailwindcss": "latest",
-    "typescript": "latest"
+    "@types/node": "^20.8.4",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.11",
+    "vitest": "^0.34.6"
   }
 }
