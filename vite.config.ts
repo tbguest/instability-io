@@ -20,4 +20,7 @@ export default defineConfig({
     },
   },
   publicDir,
+  test: {
+    root: __dirname,
+  },
 });
