@@ -16,6 +16,7 @@ export default defineConfig({
       input: {
         main: resolve(root, "index.html"),
         ripples: resolve(root, "ripples", "index.html"),
+        lorenz: resolve(root, "lorenz", "index.html"),
       },
     },
   },
