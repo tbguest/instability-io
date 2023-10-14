@@ -19,7 +19,7 @@ const width = screenCanvas.width;
 const height = screenCanvas.height;
 const xScale = width / h.length;
 const yScale = 10;
-const yOffset = 250;
+const yOffset = 100;
 
 const xMin = 1;
 const hAtXMin = yScale * h[0] + yOffset;
@@ -54,7 +54,7 @@ function draw() {
 
       // Draw the contents of the screenCanvas on the bufferCanvas, with an offset
       bufferContext.clearRect(0, 0, width, height);
-      bufferContext.drawImage(screenCanvas, 0, -2);
+      bufferContext.drawImage(screenCanvas, 0, 2);
 
       const { h: h1 } = evolve(h, 7); // Pass this in
       h = h1;

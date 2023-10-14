@@ -71,10 +71,15 @@ body {
   max-width: 100%;
 }
 
-.section {
+.nav {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-top: 48px;
+}
+
+.nav a {
+  width: fit-content;
 }
 
 .nav-text {
@@ -84,18 +89,32 @@ body {
 
 .footer {
   display: flex;
-  padding-top: 12px;
+  padding-top: 8px;
   width: 100%;
   border-top: 1px solid;
   justify-self: end;
+  font-size: small;
 }
 
 .footer a {
   text-decoration: none;
 }
 
+h1 {
+  margin-bottom: 48px;
+}
+
 @media only screen and (max-width: 600px) {
   .container {
     padding: 12px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .nav-text {
+    font-weight: bold;
+    font-size: 1rem;
   }
 }
