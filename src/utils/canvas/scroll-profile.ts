@@ -1,12 +1,5 @@
-export const EPS = 0.1;
-export const NX = 100;
-export const L0 = 5.0;
-export const B = 5.0;
-// export const B = 30.0;
-const Q0 = 1;
-export const Q = Q0 * EPS;
-export const D = 0.35;
-// export const D = 0.25;
+import { L0, NX } from "../models/ripples/constants";
+import { evolve, initialize } from "../models/ripples/lib";
 
 const screenCanvas = <HTMLCanvasElement>document.getElementById("screenCanvas");
 const bufferCanvas = <HTMLCanvasElement>document.getElementById("bufferCanvas");
@@ -68,64 +61,3 @@ function draw() {
   }
 }
 draw();
-
-export function initialize(roughness: number) {
-  const initialState = [];
-  for (let i = 0; i < NX; i++) {
-    initialState.push(roughness * Math.random());
-  }
-  return initialState;
-}
-
-export function saltate(hs: number[], L: number) {
-  const slopes = [];
-  for (let j = 0; j < NX; j++) {
-    // Let's introduce a slope condition where the grain only moves if it's on the "upwind" side of the slope
-    const jprevious = j === 0 ? NX - 1 : j - 1;
-    const jnext = j === NX - 1 ? 0 : j + 1;
-    const slope = hs[jnext] - hs[jprevious];
-    if (slope <= 0) {
-      let jump = Math.floor(L + B * hs[j]);
-      jump = jump < 0 ? 0 : jump;
-      hs[j] = hs[j] - Q;
-      if (j + jump < NX) {
-        hs[j + jump] = hs[j + jump] + Q;
-      } else {
-        const wrap = j + jump - NX;
-        hs[wrap] = hs[wrap] + Q;
-      }
-    }
-    slopes.push(slope);
-  }
-
-  return { h: hs, slopes };
-}
-
-function diffuse(h: number[]) {
-  // Init a temp array of sums
-  let nnSum = [];
-  for (let i = 0; i < NX; i++) {
-    nnSum.push(0.0);
-  }
-
-  // Boundaries
-  nnSum[0] = (h[1] + h[NX - 1]) / 2;
-  nnSum[NX - 1] = (h[NX - 2] + h[0]) / 2;
-
-  // Body
-  for (let i = 1; i < NX - 2; i++) {
-    nnSum[i] = (h[i - 1] + h[i + 1]) / 2;
-  }
-
-  // Average
-  for (let i = 0; i < NX; i++) {
-    h[i] = h[i] + D * (nnSum[i] - h[i]);
-  }
-
-  return h;
-}
-
-export function evolve(h: number[], L: number) {
-  const { h: saltated, slopes } = saltate(h, L);
-  return { h: diffuse(saltated), slope: slopes };
-}
