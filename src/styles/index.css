@@ -39,6 +39,14 @@ h6 {
   isolation: isolate;
 }
 
+h1 {
+  font-size: 28px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
 a {
   color: black;
 }

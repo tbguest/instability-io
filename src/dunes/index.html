@@ -7,7 +7,10 @@
     <title>Instability I/O</title>
     <link rel="stylesheet" type="text/css" href="../styles/pages.css" />
     <link rel="icon" type="image/png" href="/favicon.ico" />
-    <script type="module" src="../utils/canvas/scroll-profile.ts"></script>
+    <script
+      type="module"
+      src="../utils/canvas/scroll-profile-dunes.ts"
+    ></script>
   </head>
   <body>
     <div class="container">
@@ -15,12 +18,12 @@
         <canvas
           class="canvas"
           width="600"
-          height="480"
+          height="400"
           id="screenCanvas"
         ></canvas>
         <canvas
           width="600"
-          height="480"
+          height="400"
           id="bufferCanvas"
           style="display: none"
         ></canvas>
@@ -30,18 +33,17 @@
           <section class="section">
             <div class="content">
               <div>
-                <h1>Ripples in wind-blown sand</h1>
-                <em style="font-size: small"
-                  >Inspired by Nishimori and Ouchi (1993)</em
-                >
+                <h1>Dune automaton</h1>
+                <em style="font-size: small">Inspired by Werner (1995)</em>
               </div>
               <p>
-                A reaction-diffusion-type system representing sand transport
-                dynamics on a 1-d coupled map-lattice.
+                A cellular automaton approach to sand dune evolution in 1-d.
               </p>
               <p>
-                The rippled pattern emerges spontaneously though instability
-                coinciding with a critical "wind" stress.
+                Discrete "slabs" on a lattice self-organize into dune-like
+                structures forced by "wind". The erosion and deposition of slabs
+                are stochastically controlled, with additional contstraints from
+                simulated "avalanching" and no-transport "shadow-zones".
               </p>
             </div>
             <nav class="nav">
@@ -49,11 +51,11 @@
               <a href="/" class="nav-link">
                 <p class="nav-text">Index</p>
               </a>
+              <a href="/ripples/" class="nav-link">
+                <p class="nav-text">Ripples in wind-blown sand</p>
+              </a>
               <a href="/lorenz/" class="nav-link">
                 <p class="nav-text">Initial conditions (Lorenz)</p>
-              </a>
-              <a href="/dunes/" class="nav-link">
-                <p class="nav-text">Dune automaton</p>
               </a>
             </nav>
           </section>

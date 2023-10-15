@@ -58,7 +58,6 @@ function draw() {
     path.lineTo(0.75 * width + scale * y2, 0.1 * height + scale * x2);
 
     screenContext.lineWidth = 1;
-    // screenContext.strokeStyle = `#0000${00}`;
     screenContext.stroke(path); // Shade by z?
 
     // Draw the contents of the screenCanvas on the bufferCanvas, with an offset
