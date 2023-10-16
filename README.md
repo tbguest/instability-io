@@ -6,7 +6,7 @@ HTML, CSS, TypeScript, Vite.
 
 Why Vite:
 
-- TypeScript support
+- TypeScript transpiling
 - I wanted a smooth and enjoyable dev (server) experience
 - Imports/exports without declaring modules
 - I don't plan to lean on npm imports very heavily for this project (or perhaps even at all), but you never know...
