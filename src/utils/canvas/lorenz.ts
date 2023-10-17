@@ -1,3 +1,5 @@
+import { update } from "../models/lorenz/lib";
+
 const screenCanvas = <HTMLCanvasElement>document.getElementById("screenCanvas");
 const bufferCanvas = <HTMLCanvasElement>document.getElementById("bufferCanvas");
 
@@ -13,37 +15,26 @@ let x2 = 0.2;
 let y2 = 0.0;
 let z2 = 0.0;
 
-// Parameters
-const sigma = 10.0;
-const rho = 28.0;
-const beta = 8.0 / 3.0;
-
 // Scale the data to the canvas
 const width = screenCanvas.width;
 const height = screenCanvas.height;
 
 // Time step and scale
-const dt = 0.01;
 const scale = 3;
 
 function draw() {
   if (screenContext && bufferContext) {
-    // Update the chaotic system using Euler method
     // System 1
-    const dx1 = sigma * (y1 - x1) * dt;
-    const dy1 = (x1 * (rho - z1) - y1) * dt;
-    const dz1 = (x1 * y1 - beta * z1) * dt;
-    x1 += dx1;
-    y1 += dy1;
-    z1 += dz1;
+    const { x: xp, y: yp, z: zp } = update(x1, y1, z1);
+    x1 = xp;
+    y1 = yp;
+    z1 = zp;
 
     // System 2
-    const dx2 = sigma * (y2 - x2) * dt;
-    const dy2 = (x2 * (rho - z2) - y2) * dt;
-    const dz2 = (x2 * y2 - beta * z2) * dt;
-    x2 += dx2;
-    y2 += dy2;
-    z2 += dz2;
+    const { x: xpp, y: ypp, z: zpp } = update(x2, y2, z2);
+    x2 = xpp;
+    y2 = ypp;
+    z2 = zpp;
 
     screenContext.clearRect(0, 0, width, height);
     bufferCanvas && screenContext.drawImage(bufferCanvas, 0, 0);
