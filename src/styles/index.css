@@ -90,11 +90,6 @@ body {
   width: fit-content;
 }
 
-.nav-text {
-  font-weight: bold;
-  font-size: large;
-}
-
 .footer {
   display: flex;
   padding-top: 8px;
@@ -119,10 +114,5 @@ h1 {
 
   h1 {
     font-size: 1.5rem;
-  }
-
-  .nav-text {
-    font-weight: bold;
-    font-size: 1rem;
   }
 }
